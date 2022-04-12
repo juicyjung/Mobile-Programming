@@ -9,17 +9,22 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+    EditText txtUserName;
+    EditText txtUserDepartment;
+    EditText txtUserStudentId;
+    EditText txtUrl;
+    EditText txtPhoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EditText txtUserName = findViewById(R.id.userName);
-        EditText txtUserDepartment = findViewById(R.id.userDepartment);
-        EditText txtUserStudentId = findViewById(R.id.userStudentId);
-        EditText txtUrl = findViewById(R.id.url);
-        EditText txtPhoneNumber = findViewById(R.id.phoneNumber);
+        txtUserName = findViewById(R.id.userName);
+        txtUserDepartment = findViewById(R.id.userDepartment);
+        txtUserStudentId = findViewById(R.id.userStudentId);
+        txtUrl = findViewById(R.id.showUrl);
+        txtPhoneNumber = findViewById(R.id.showPhoneNumber);
 
         Button loginButton = (Button) findViewById(R.id.login);
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -53,11 +58,16 @@ public class MainActivity extends AppCompatActivity {
 //            public void onClick(View view) {
 //                //…
 //            }
-        });
+//        });
     }
 
-//    @Override
-//    protected void onActivityResult(int …) {
-//        //… use Bundle
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        String url = data.getStringExtra("url");
+        String phoneNumber = data.getStringExtra("phoneNumber");
+
+        txtUrl.setText(url);
+        txtPhoneNumber.setText(phoneNumber);
+    }
 }

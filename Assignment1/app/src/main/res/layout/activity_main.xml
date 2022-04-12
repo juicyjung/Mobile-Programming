@@ -39,7 +39,7 @@
         />
 
     <EditText
-        android:id="@+id/url"
+        android:id="@+id/showUrl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="URL"
@@ -54,7 +54,7 @@
         />
 
     <EditText
-        android:id="@+id/phoneNumber"
+        android:id="@+id/showPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Phone"
