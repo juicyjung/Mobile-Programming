@@ -1,34 +1,60 @@
 package juicyjung.gachon.forupload;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    LinearLayout container;
-
+    CheckBox chkCream;
+    CheckBox chkSugar;
+    Button btnPay;
+    RadioGroup radCoffeeType;
+    RadioButton radDecaf;
+    RadioButton radEspresso;
+    RadioButton radColombian;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R    .layout.activity_main);
+        setContentView(R.layout.activity_main);
 
-        container = (LinearLayout) findViewById(R.id.container);
+        chkCream = findViewById(R.id.chkCream);
+        chkSugar = findViewById(R.id.chkSugar);
+        btnPay = findViewById(R.id.btnPay);
 
-        Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener(){
+        radCoffeeType = findViewById(R.id.radGroupCoffeeType);
+        radDecaf = findViewById(R.id.radDecaf);
+        radEspresso = findViewById(R.id. radExpresso);
+        radColombian = findViewById (R.id.radColombian);
+
+        btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                inflater.inflate(R.layout.sub1, container, true);
+            public void onClick(View v) {
+                String msg = "Coffee ";
+                if (chkCream.isChecked()){
+                    msg += " & cream ";
+                }
+                if (chkSugar.isChecked()){
+                    msg += " & Sugar";
+                }
 
-                CheckBox checkBox = (CheckBox) container.findViewById(R.id.checkBox);
-                checkBox.setText("로딩 되었어요.");
+                int radioId =
+                        radCoffeeType.getCheckedRadioButtonId();
+                if (radDecaf.getId()==radioId)
+                    msg = "Decaf " + msg;
+                if (radColombian.getId()==radioId)
+                    msg = "Colombian " + msg;
+                if (radEspresso.isChecked())
+                    msg = "Espresso " + msg;
+                Toast.makeText(getApplicationContext(), msg,
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }

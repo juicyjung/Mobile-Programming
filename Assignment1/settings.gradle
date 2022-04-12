@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "ForUpload"
+rootProject.name = "Assignment1"
 include ':app'
