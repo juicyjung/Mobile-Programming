@@ -3,6 +3,7 @@ package juicyjung.gachon.assignment1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         txtPhoneNumber = findViewById(R.id.showPhoneNumber);
 
         Button loginButton = (Button) findViewById(R.id.login);
+        Button webConnectButton = (Button) findViewById(R.id.webConnect);
+        Button phoneCallButton = (Button) findViewById(R.id.phoneCall);
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,22 +47,26 @@ public class MainActivity extends AppCompatActivity {
                 loginIntent.putExtras(loginBundle);
 
                 startActivityForResult(loginIntent, 1122);
-
-
             }
         });
-//        button2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //…
-//            }
-//        });
-//        button3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //…
-//            }
-//        });
+
+        webConnectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = txtUrl.getText().toString();
+                Intent webConnectIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(webConnectIntent);
+            }
+        });
+
+        phoneCallButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String phoneNumber = txtPhoneNumber.getText().toString();
+                Intent phoneNumberIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(phoneNumber));
+                startActivity(phoneNumberIntent);
+            }
+        });
     }
 
     @Override
