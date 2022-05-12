@@ -3,10 +3,8 @@ package juicyjung.gachon.practice10_1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -17,14 +15,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         helper = new MySQLiteOpenHelper(MainActivity.this, "person.db", null, 1);
         insert("유저1", 18, "홍길동");
         insert("유저2", 28, "홍길동2");
         insert("유저3", 28, "홍길동3");
         update("유저1", 58);
         delete("유저2");
+
         select();
     }
+
     public void insert(String name, int age, String address) {
         db = helper.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -33,17 +34,20 @@ public class MainActivity extends AppCompatActivity {
         values.put("address", address);
         db.insert("student", null, values);
     }
+
     public void update (String name, int age) {
         db = helper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("age", age);
         db.update("student", values, "name=?", new String[]{name});
     }
+
     public void delete (String name) {
         db = helper.getWritableDatabase();
         db.delete("student", "name=?", new String[]{name});
         Log.i("db1", name + "정상적으로 삭제 되었습니다.");
     }
+
     public void select() {
         db = helper.getReadableDatabase();
         Cursor c = db.query("student", null, null, null, null, null, null);
