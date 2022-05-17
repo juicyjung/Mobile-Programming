@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".MainFragment"
     android:orientation="vertical"
-    android:background="#FF00DDFF"
+    android:background="@color/holo_blue_bright"
     >
 
     <LinearLayout
@@ -19,14 +19,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:text="메인"
+            android:text="@string/main"
             />
 
         <Button
             android:id="@+id/btn_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="메뉴"
+            android:text="@string/menu"
             />
 
     </LinearLayout>
@@ -34,8 +34,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ListView Fragment"
-        android:textColor="#3700B3"
+        android:text="@string/listView_title"
+        android:textColor="@color/Ultramarine"
         android:textSize="45dp"
         />
 

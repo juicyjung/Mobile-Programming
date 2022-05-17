@@ -72,7 +72,8 @@ public class MenuFragment extends Fragment {
 
         String[] items = {"데이터 과학", "모바일 프로그래밍", "소프트웨어 공학", "경영학원론", "소프트웨어 산업세미나", "졸업작품 1"};
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, items);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
