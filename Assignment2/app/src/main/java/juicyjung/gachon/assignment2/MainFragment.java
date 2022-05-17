@@ -7,8 +7,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,11 +64,36 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_main, container, false);
+
         String[] day = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
 
-        ListView mainList = getActivity().findViewById(R.id.mainList);
+        ListView mainList = rootView.findViewById(R.id.mainList);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, day);
         mainList.setAdapter(adapter);
+
+        mainList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getActivity(), day[i], Toast.LENGTH_LONG).show();
+            }
+        });
+
+        Button button = rootView.findViewById(R.id.btn_menu);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity activity = (MainActivity) getActivity();
+                activity.onFragmentChanged(1);
+            }
+        });
+
         return rootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+
     }
 }

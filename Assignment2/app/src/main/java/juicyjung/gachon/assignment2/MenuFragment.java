@@ -7,6 +7,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,7 +65,43 @@ public class MenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu, container, false);
+
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_menu, container, false);
+
+        Spinner spinner = rootView.findViewById(R.id.menuSpinner);
+
+        String[] items = {"데이터 과학", "모바일 프로그래밍", "소프트웨어 공학", "경영학원론", "소프트웨어 산업세미나", "졸업작품 1"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, items);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getActivity(), items[i] + "(이)가 선택되었습니다.", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        Button button = rootView.findViewById(R.id.btn_main);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity activity = (MainActivity) getActivity();
+                activity.onFragmentChanged(0);
+            }
+        });
+
+        return rootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+
     }
 }
